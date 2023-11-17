@@ -29,17 +29,17 @@ function useSnapshot<T>(makeSnapshot: (r: MemoryRouter, prev: T | null) => T): T
   return snapshot;
 }
 
-export const useRouter: typeof NextNav.useRouter = () => {
+export const useRouter = () => {
   // All these methods are static, and never trigger a rerender:
   return useMemo(
     () => ({
-      push: (url, options) => singletonRouter.push(url),
-      replace: (url, options) => singletonRouter.replace(url),
+      push: singletonRouter.push,
+      replace: singletonRouter.replace,
       refresh: singletonRouter.reload,
       prefetch: singletonRouter.prefetch,
       back: singletonRouter.back,
       forward: singletonRouter.forward,
-    }),
+    } as unknown as typeof NextNav.useRouter),
     []
   );
 };

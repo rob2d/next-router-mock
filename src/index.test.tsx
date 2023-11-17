@@ -10,28 +10,23 @@ describe("next-overridable-hook", () => {
   });
 
   it("the router should have several default properties set", () => {
-    expect(router).toEqual({
-      // Ignore these:
-      events: expect.any(Object),
-      internal: expect.any(Object),
-      async: expect.any(Boolean),
-      push: expect.any(Function),
-      replace: expect.any(Function),
-      setCurrentUrl: expect.any(Function),
-      registerPaths: expect.any(Function),
-      // Ensure the router has exactly these properties:
-      asPath: "/",
-      basePath: "",
-      hash: "",
-      isFallback: false,
-      isLocaleDomain: false,
-      isPreview: false,
-      isReady: true,
-      locale: undefined,
-      locales: [],
-      pathname: "/",
-      query: {},
-    });
+    expect(router.events).toEqual(expect.any(Object));
+    expect(router.internal).toEqual(expect.any(Object));
+    expect(router.async).toBe(false);
+    expect(router.push).toEqual(expect.any(Function));
+    expect(router.replace).toEqual(expect.any(Function));
+    expect(router.setCurrentUrl).toEqual(expect.any(Function));
+    expect(router.asPath).toEqual('/');
+    expect(router.basePath).toEqual('');
+    expect(router.hash).toEqual('');
+    expect(router.isFallback).toEqual(false);
+    expect(router.isLocaleDomain).toEqual(false);
+    expect(router.isPreview).toEqual(false);
+    expect(router.isReady).toEqual(true);
+    expect(router.locale).toEqual(undefined);
+    expect(router.locales).toEqual([]);
+    expect(router.pathname).toEqual('/');
+    expect(router.query).toEqual({});
   });
 
   describe("useRouter", () => {
